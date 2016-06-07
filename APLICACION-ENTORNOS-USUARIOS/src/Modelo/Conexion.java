@@ -365,9 +365,6 @@ public class Conexion {
 			while (rset.next()) {
 				tabla[i][0] = rset.getString(1);
 				tabla[i][1] = rset.getString(2);
-				tabla[i][2] = rset.getString(3);
-				tabla[i][3] = rset.getString(4);
-				tabla[i][4] = rset.getString(5);
 				i++;
 			}
 			rset.close();
@@ -376,6 +373,106 @@ public class Conexion {
 			s.printStackTrace();
 		}
 		gestion.rellenarTablaProfe();
+		
+		try {
+			String nfilas = "Select count(*) from proyecto_entornos.alumnos";
+			Statement stmt = conexion.createStatement();
+			ResultSet rset = stmt.executeQuery(nfilas);
+			rset.next();
+			int f = rset.getInt(1);
+			String query = "SELECT nombre_alumno FROM proyecto_entornos.alumnos";
+			stmt = conexion.createStatement();
+			rset = stmt.executeQuery(query);
+			ResultSetMetaData rsmd = rset.getMetaData();
+			int i = 0;
+			combo = new String[f];
+			while (rset.next()) {
+				combo[i] = rset.getString(1);
+				i++;
+			}
+			rset.close();
+			stmt.close();
+		} catch (SQLException s) {
+			s.printStackTrace();
+		}
+		gestion.rellenarComboBoxAlumno();
+		
+//		try {
+//			String nfilas = "Select count(*) from PROYECTO_ENTORNOS.notas";
+//			Statement stmt = conexion.createStatement();
+//			ResultSet rset = stmt.executeQuery(nfilas);
+//			rset.next();
+//			int f = rset.getInt(1);
+//			String query = "SELECT NOMBRE_Alumno, NOMBRE_PROFE, nota from PROYECTO_Entornos.alumnos, PROYECTO_Entornos.PROFES, PROYECTO_Entornos.notas where notas.ALUMNOS_COD_ALUMNO = alumnos.COD_ALUMNO and notas.MODULOS_COD_MODULO=modulos.COD_MODULO";
+//			stmt = conexion.createStatement();
+//			rset = stmt.executeQuery(query);
+//			ResultSetMetaData rsmd = rset.getMetaData();
+//			int c = rsmd.getColumnCount();
+//			int i = 0;
+//			tabla = new String[f][c];
+//			while (rset.next()) {
+//				tabla[i][0] = rset.getString(1);
+//				tabla[i][1] = rset.getString(2);
+//				tabla[i][2] = rset.getString(3);
+//				i++;
+//			}
+//			rset.close();
+//			stmt.close();
+//		} catch (SQLException s) {
+//			s.printStackTrace();
+//		}
+//		gestion.rellenarTablaNota();
+		
+//		try {
+//			String nfilas = "Select count(*) from PROYECTO_ENTORNOS.modulos";
+//			Statement stmt = conexion.createStatement();
+//			ResultSet rset = stmt.executeQuery(nfilas);
+//			rset.next();
+//			int f = rset.getInt(1);
+//			String query = "SELECT NOMBRE_modulo, horas_semana, nombre_profe from PROYECTO_Entornos.modulos where modulos.PROFES_COD_PROFE = profes.COD_PROFE";
+//			stmt = conexion.createStatement();
+//			rset = stmt.executeQuery(query);
+//			ResultSetMetaData rsmd = rset.getMetaData();
+//			int c = rsmd.getColumnCount();
+//			int i = 0;
+//			tabla = new String[f][c];
+//			while (rset.next()) {
+//				tabla[i][0] = rset.getString(1);
+//				tabla[i][1] = rset.getString(2);
+//				tabla[i][2] = rset.getString(3);
+//				i++;
+//			}
+//			rset.close();
+//			stmt.close();
+//		} catch (SQLException s) {
+//			s.printStackTrace();
+//		}
+//		gestion.rellenarTablaModulo();
+		
+
+		
+		try {
+			String nfilas = "Select count(*) from proyecto_entornos.modulos";
+			Statement stmt = conexion.createStatement();
+			ResultSet rset = stmt.executeQuery(nfilas);
+			rset.next();
+			int f = rset.getInt(1);
+			String query = "SELECT nombre_modulo FROM proyecto_entornos.modulos";
+			stmt = conexion.createStatement();
+			rset = stmt.executeQuery(query);
+			ResultSetMetaData rsmd = rset.getMetaData();
+			int i = 0;
+			combo = new String[f];
+			while (rset.next()) {
+				combo[i] = rset.getString(1);
+				i++;
+			}
+			rset.close();
+			stmt.close();
+		} catch (SQLException s) {
+			s.printStackTrace();
+		}
+		gestion.rellenarComboBoxModulo();
 		
 	}
 	

@@ -504,12 +504,10 @@ public class Gestion extends JFrame {
 		tabbedPane.addTab("Notas", null, panel_notas, null);
 		
 		comboBox_Alumnos = new JComboBox();
-		comboBox_Alumnos.setModel(new DefaultComboBoxModel(new String[] {"alumno1", "alumno2", "alumno3", "alumno4", "alumno5"}));
 		
 		JLabel lblAlumnos = new JLabel("Alumnos");
 		
 		comboBox_Modulo = new JComboBox();
-		comboBox_Modulo.setModel(new DefaultComboBoxModel(new String[] {"Sistemas Informaticos", "Entornos", "Lenguajes", "Bases de Datos", "Programacion"}));
 		
 		JLabel labelModulo = new JLabel("Modulo");
 		
@@ -843,5 +841,41 @@ public class Gestion extends JFrame {
 		}
 		
 	}
+
+	public void rellenarComboBoxAlumno() {
+		String[] combo = conexion.getComboBox();
+		DefaultComboBoxModel modelo = (DefaultComboBoxModel) comboBox_Alumnos.getModel();
+		for (int i = 0; i < combo.length; i++) {
+			modelo.addElement(combo[i]);
+		}
+		
+	}
+
+	public void rellenarComboBoxModulo() {
+		String[] combo = conexion.getComboBox();
+		DefaultComboBoxModel modelo = (DefaultComboBoxModel) comboBox_Modulo.getModel();
+		for (int i = 0; i < combo.length; i++) {
+			modelo.addElement(combo[i]);
+		}
+		
+	}
+
+//	public void rellenarTablaModulo() {
+//		String[][] tabla = conexion.getMateriales();
+//		DefaultTableModel modelo = (DefaultTableModel) table_modulos.getModel();
+//		for (int i = 0; i < tabla.length; i++) {
+//			modelo.addRow(tabla[i]);
+//		}
+//		
+//	}
+
+//	public void rellenarTablaNota() {
+//		String[][] tabla = conexion.getMateriales();
+//		DefaultTableModel modelo = (DefaultTableModel) table_Notas.getModel();
+//		for (int i = 0; i < tabla.length; i++) {
+//			modelo.addRow(tabla[i]);
+//		}
+//		
+//	}
 		
 	}
